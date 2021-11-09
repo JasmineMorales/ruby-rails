@@ -1,7 +1,11 @@
 class GenresController < ApplicationController
         #GET /genres
         def index
-            @genres = Genre.all    
+            @genres = Genre.all  
+            if params[:book_id]
+                book = Book.find params[:book_id]
+                @book = book.genres
+            end  
             render 200, json: @genres
         end
     

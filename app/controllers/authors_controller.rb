@@ -2,7 +2,10 @@ class AuthorsController < ApplicationController
     #GET /authors
     def index
         @authors = Author.all
-
+        if params[:book_id]
+            book = Book.find params[:book_id]
+            @book = book.authors
+        end
         render 200, json: @authors
     end
 
@@ -41,6 +44,6 @@ class AuthorsController < ApplicationController
 
     protected
     def author_params
-        params.require(:author).permit(:name, :bio, :country)
+        params.require(:author).permit(:name, :bio, :country, book_ids: [])
     end
 end
