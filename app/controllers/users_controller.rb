@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
             #GET /users
             def index
-                @users = User.all    
+                @users = User.all   
+                if params[:book_id]
+                    book = Book.find params[:book_id]
+                    @book = book.users
+                end 
                 render 200, json: @users
             end
         
@@ -40,6 +44,6 @@ class UsersController < ApplicationController
         
             protected
             def user_params
-                params.require(:user).permit(:name, :age)
+                params.require(:user).permit(:name, :age, book_ids: [])
             end
 end
