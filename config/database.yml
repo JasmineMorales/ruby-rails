@@ -22,4 +22,8 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  databse: ruby-rails
+  username: ruby-rails
+  password: <%= ENV['DATABASE_PASSWORD'] %>

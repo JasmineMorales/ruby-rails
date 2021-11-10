@@ -15,14 +15,18 @@ ActiveRecord::Schema.define(version: 2021_11_09_041737) do
   create_table "authors", force: :cascade do |t|
     t.string "name", null: false
     t.text "bio"
+    t.text "country"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "country"
   end
 
   create_table "book_has_authors", force: :cascade do |t|
+    t.integer "author_id", null: false
+    t.integer "book_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_book_has_authors_on_author_id"
+    t.index ["book_id"], name: "index_book_has_authors_on_book_id"
   end
 
   create_table "book_has_genres", force: :cascade do |t|
