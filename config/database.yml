@@ -23,7 +23,4 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  encoding: unicode
-  databse: ruby-rails
-  username: ruby-rails
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
